@@ -1,0 +1,35 @@
+.kanban {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.coluna {
+  flex: 1;
+  background: #f4f6f8;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.spinner {
+  display: flex;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.div-titulo {
+  font-size: 30px;
+  width: 30%;
+  margin-left: 90px;
+  font-weight: 700;
+  color: #454040;
+}
+
+.spinner-container {
+  display: flex;
+  margin-top: 100px;
+}

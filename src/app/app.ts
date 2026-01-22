@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ListagemTarefas } from './listagem-tarefas/listagem-tarefas';
+import { ListTasks } from './list-tasks/list-tasks';
+import { SharedTaskModule } from './shared.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ListagemTarefas],
+  imports: [SharedTaskModule, RouterOutlet, ListTasks],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

@@ -1,0 +1,60 @@
+<!-- <div class="div-titulo">Sistema Gerenciador de Tasks</div>
+
+@if (loading) {
+  <div class="spinner-container">
+    <p-progress-spinner ariaLabel="loading" />
+  </div>
+}
+@if (!loading) {
+  <div class="container">
+    <p-panel>
+      <div class="kanban">
+        <div class="coluna">
+          <h3>A Fazer</h3>
+          <app-task-card [lista]="todo" status="a-fazer"> </app-task-card>
+        </div>
+
+        <div class="coluna">
+          <h3>Em Andamento</h3>
+          <app-task-card [lista]="inProgress" status="em-andamento"> </app-task-card>
+        </div>
+
+        <div class="coluna">
+          <h3>Concluído</h3>
+          <app-task-card [lista]="done" status="concluido"> </app-task-card>
+        </div>
+      </div>
+    </p-panel>
+  </div>
+} -->
+
+<div class="div-titulo">Sistema Gerenciador de Tasks</div>
+
+@if (loading()) {
+  <div class="spinner-container">
+    <p-progress-spinner ariaLabel="loading" />
+  </div>
+}
+
+@if (!loading()) {
+  <div class="container">
+    <p-panel>
+      <div class="kanban">
+        <div class="coluna">
+          <h3>A Fazer ({{ todo().length }})</h3>
+          <app-task-card [lista]="todo()" status="a-fazer" />
+        </div>
+
+        <div class="coluna">
+          <h3>Em Andamento ({{ inProgress().length }})</h3>
+          <app-task-card [lista]="inProgress()" status="em-andamento" />
+        </div>
+
+        <div class="coluna">
+          <h3>Concluído ({{ done().length }})</h3>
+          <app-task-card [lista]="done()" status="concluido" />
+        </div>
+      </div>
+    </p-panel>
+  </div>
+}

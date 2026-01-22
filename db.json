@@ -1,5 +1,5 @@
 {
-  "tarefas": [
+  "tasks": [
     {
       "id": 1,
       "titulo": "Tela de login",

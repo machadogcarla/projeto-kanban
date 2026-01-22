@@ -1,0 +1,34 @@
+<!-- 
+<div
+  cdkDropList
+  [cdkDropListData]="lista"
+  (cdkDropListDropped)="drop($event)"
+  class="lista"
+>
+  <p-card *ngFor="let tarefa of lista" cdkDrag>
+    <ng-template pTemplate="title">
+      {{ tarefa.titulo }}
+    </ng-template>
+    <p>{{ tarefa.descricao }}</p>
+    <small>Prazo: {{ tarefa.prazo | date }}</small>
+  </p-card>
+</div> -->
+
+
+<div 
+  cdkDropList 
+  [cdkDropListData]="lista" 
+  (cdkDropListDropped)="drop($event)" 
+  class="lista"
+>
+  @for (tarefa of lista; track tarefa.id) {
+    <p-card cdkDrag>
+      <ng-template pTemplate="title">
+        {{ tarefa.titulo }}
+      </ng-template>
+
+      <p>{{ tarefa.descricao }}</p>
+      <small>Prazo: {{ tarefa.prazo | date }}</small>
+    </p-card>
+  }
+</div>
