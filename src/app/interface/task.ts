@@ -7,3 +7,14 @@ export interface Task {
   tags?: string;
   status: string;
 }
+
+
+export interface ModalConfirmationInterface {
+ target: EventTarget;
+ message: string;
+ header: string;
+ rejectLabel: string;
+ acceptLabel: string;
+ icon: string;
+
+}

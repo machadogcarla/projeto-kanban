@@ -1,93 +1,12 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "titulo": "Tela de login",
-      "descricao": "Criação da tela de login",
-      "prazo": "2025-09-12",
-      "prioridade": "1",
-      "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 2,
-      "titulo": "Cadastro de usuário",
-      "descricao": "Criação da tela de cadastro de usuário",
-      "prazo": "2025-09-12",
-      "prioridade": "2",
-      "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 3,
-      "titulo": "Alteração de senha",
-      "descricao": "Criação da tela de alteração de senha",
-      "prazo": "2025-09-12",
-      "prioridade": "1",
-      "tags": "frontend",
-      "status": "em-andamento"
-    },
-    {
-      "id": 4,
-      "titulo": "Dashboard inicial",
-      "descricao": "Criação da tela inicial com resumo de tarefas",
-      "prazo": "2025-09-15",
-      "prioridade": "1",
-      "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 5,
-      "titulo": "API de autenticação",
-      "descricao": "Implementar endpoint de autenticação de usuários",
-      "prazo": "2025-09-16",
-      "prioridade": "1",
-      "tags": "backend",
-      "status": "em-andamento"
-    },
-    {
       "id": 6,
       "titulo": "Listagem de tarefas",
       "descricao": "Criar tela de listagem das tarefas no Kanban",
-      "prazo": "2025-09-17",
-      "prioridade": "2",
+      "prazo": "",
+      "prioridade": "media",
       "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 7,
-      "titulo": "Mover tarefas no Kanban",
-      "descricao": "Implementar drag and drop entre colunas",
-      "prazo": "2025-09-18",
-      "prioridade": "2",
-      "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 8,
-      "titulo": "Cadastro de tarefas",
-      "descricao": "Criar formulário para cadastro de novas tarefas",
-      "prazo": "2025-09-19",
-      "prioridade": "1",
-      "tags": "frontend",
-      "status": "em-andamento"
-    },
-    {
-      "id": 9,
-      "titulo": "Edição de tarefas",
-      "descricao": "Permitir editar informações da tarefa",
-      "prazo": "2025-09-20",
-      "prioridade": "2",
-      "tags": "frontend",
-      "status": "a-fazer"
-    },
-    {
-      "id": 10,
-      "titulo": "Tratamento de erros globais",
-      "descricao": "Implementar interceptor para tratamento de erros HTTP",
-      "prazo": "2025-09-21",
-      "prioridade": "3",
-      "tags": "infra",
       "status": "a-fazer"
     }
   ]

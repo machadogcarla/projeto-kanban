@@ -1,34 +1,47 @@
-<!-- 
-<div
-  cdkDropList
-  [cdkDropListData]="lista"
-  (cdkDropListDropped)="drop($event)"
-  class="lista"
->
-  <p-card *ngFor="let tarefa of lista" cdkDrag>
-    <ng-template pTemplate="title">
-      {{ tarefa.titulo }}
+@for (tarefa of lista; track tarefa.id) {
+  <p-card cdkDrag>
+    <ng-template pTemplate="title" class="titulo-card">
+      <div class="titulo-card">
+        <span>{{ tarefa?.titulo }}</span>
+
+        <div class="content-chip-mais-acoes">
+          <p-chip
+            [label]="getPrioridade(tarefa.prioridade)"
+            [ngClass]="{
+              'chip-urgente': tarefa.prioridade === 'urgente',
+              'chip-media': tarefa.prioridade === 'alta',
+              'chip-alta': tarefa.prioridade === 'media',
+              'chip-baixa': tarefa.prioridade === 'baixa',
+            }"
+          />
+          <i
+            class="pi pi-ellipsis-v"
+            style="font-size: 1rem; cursor: pointer"
+            (click)="op.toggle($event)"
+          ></i>
+        </div>
+      </div>
+
+      <p-popover #op>
+        <div class="flex flex-col gap-4 popover">
+          <div (click)="editar(tarefa.id)">Editar</div>
+          <div (click)="remover(tarefa.id, $event)">Remover</div>
+        </div>
+      </p-popover>
     </ng-template>
-    <p>{{ tarefa.descricao }}</p>
-    <small>Prazo: {{ tarefa.prazo | date }}</small>
+
+    <p class="descricao">{{ tarefa?.descricao }}</p>
+    @if (tarefa?.prazo) {
+      <small>Prazo: {{ tarefa?.prazo | date }}</small>
+    }
   </p-card>
-</div> -->
+}
 
+@if (openModalConfirmation()) {
+  <app-modal-confirmation
+    [conteudoModal]="conteudoModal"
+    (actionReceived)="actionReceived($event)"
+  ></app-modal-confirmation>
+}
 
-<div 
-  cdkDropList 
-  [cdkDropListData]="lista" 
-  (cdkDropListDropped)="drop($event)" 
-  class="lista"
->
-  @for (tarefa of lista; track tarefa.id) {
-    <p-card cdkDrag>
-      <ng-template pTemplate="title">
-        {{ tarefa.titulo }}
-      </ng-template>
-
-      <p>{{ tarefa.descricao }}</p>
-      <small>Prazo: {{ tarefa.prazo | date }}</small>
-    </p-card>
-  }
-</div>
+<p-toast />

@@ -1,33 +1,3 @@
-<!-- <div class="div-titulo">Sistema Gerenciador de Tasks</div>
-
-@if (loading) {
-  <div class="spinner-container">
-    <p-progress-spinner ariaLabel="loading" />
-  </div>
-}
-@if (!loading) {
-  <div class="container">
-    <p-panel>
-      <div class="kanban">
-        <div class="coluna">
-          <h3>A Fazer</h3>
-          <app-task-card [lista]="todo" status="a-fazer"> </app-task-card>
-        </div>
-
-        <div class="coluna">
-          <h3>Em Andamento</h3>
-          <app-task-card [lista]="inProgress" status="em-andamento"> </app-task-card>
-        </div>
-
-        <div class="coluna">
-          <h3>Concluído</h3>
-          <app-task-card [lista]="done" status="concluido"> </app-task-card>
-        </div>
-      </div>
-    </p-panel>
-  </div>
-} -->
-
 <div class="div-titulo">Sistema Gerenciador de Tasks</div>
 
 @if (loading()) {
@@ -40,19 +10,46 @@
   <div class="container">
     <p-panel>
       <div class="kanban">
-        <div class="coluna">
-          <h3>A Fazer ({{ todo().length }})</h3>
-          <app-task-card [lista]="todo()" status="a-fazer" />
+        <div
+          class="coluna"
+          cdkDropList
+          id="a-fazer"
+          [cdkDropListData]="todo()"
+          [cdkDropListConnectedTo]="['em-andamento', 'concluido']"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <h2>A Fazer</h2>
+          <div class="lista">
+            <app-task-card [lista]="todo()" (taskRemoved)="onTaskRemoved($event)" />
+          </div>
         </div>
 
-        <div class="coluna">
-          <h3>Em Andamento ({{ inProgress().length }})</h3>
-          <app-task-card [lista]="inProgress()" status="em-andamento" />
+        <div
+          class="coluna"
+          cdkDropList
+          id="em-andamento"
+          [cdkDropListData]="inProgress()"
+          [cdkDropListConnectedTo]="['a-fazer', 'concluido']"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <h2>Em Andamento</h2>
+          <div class="lista">
+            <app-task-card [lista]="inProgress()" (taskRemoved)="onTaskRemoved($event)" />
+          </div>
         </div>
 
-        <div class="coluna">
-          <h3>Concluído ({{ done().length }})</h3>
-          <app-task-card [lista]="done()" status="concluido" />
+        <div
+          class="coluna"
+          cdkDropList
+          id="concluido"
+          [cdkDropListData]="done()"
+          [cdkDropListConnectedTo]="['a-fazer', 'em-andamento']"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <h2>Concluído</h2>
+          <div class="lista">
+            <app-task-card [lista]="done()" (taskRemoved)="onTaskRemoved($event)"  />
+          </div>
         </div>
       </div>
     </p-panel>

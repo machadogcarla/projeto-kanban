@@ -1,33 +1,103 @@
-import { Component, Input } from '@angular/core';
-import { Task } from '../../interface/task';
-import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, inject, Input, output, signal, ViewChild } from '@angular/core';
+import { ModalConfirmationInterface, Task } from '../../interface/task';
 import { DatePipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { SharedTaskModule } from '../../shared.module';
+import { ChipModule } from 'primeng/chip';
+import { PopoverModule } from 'primeng/popover';
+import { MessageService } from 'primeng/api';
+import { ModalConfirmation } from '../modal-confirmation/modal-confirmation';
+import { Toast } from 'primeng/toast';
+import { TaskService } from '../../services/task-service';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-card',
-  imports: [SharedTaskModule, DragDropModule, CardModule, DatePipe],
+  imports: [
+    SharedTaskModule,
+    CardModule,
+    DatePipe,
+    ChipModule,
+    PopoverModule,
+    ModalConfirmation,
+    DragDropModule,
+    Toast,
+  ],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
+  providers: [MessageService],
 })
 export class TaskCard {
+  @Input() lista: Task[] = [];
+  @ViewChild('op') op!: any;
+  public openModalConfirmation = signal(false);
+  public conteudoModal!: ModalConfirmationInterface;
 
-  @Input() lista: Task[]  = [];
+  private messageService = inject(MessageService);
+  private id!: number;
+  taskRemoved = output<number>();
 
-  drop(event: CdkDragDrop<Task[]>) {
-    if (event.previousContainer !== event.container) {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+  constructor(private taskService: TaskService) {}
 
-      const tarefa = event.container.data[event.currentIndex];
-      tarefa.status = event.container.id;
-
-      // this.tarefaService.editTarefa(tarefa.id, tarefa).subscribe();
+  getPrioridade(prioridade: string): string {
+    switch (prioridade) {
+      case 'baixa':
+        return 'Baixa';
+        break;
+      case 'media':
+        return 'Média';
+        break;
+      case 'alta':
+        return 'Alta';
+        break;
+      case 'urgente':
+        return 'Urgente';
+        break;
     }
+    return prioridade;
+  }
+
+  editar(id: number) {
+    console.log('Editar');
+    this.op.hide();
+  }
+
+  remover(id: number, event: any) {
+    this.id = id;
+    this.op.hide();
+
+    this.conteudoModal = {
+      target: event?.target,
+      message: 'Deseja remover essa task ?',
+      header: 'Remoção de task',
+      rejectLabel: 'Cancelar',
+      acceptLabel: 'Deletar',
+      icon: 'pi pi-info-circle',
+    };
+    this.openModalConfirmation.set(true);
+  }
+
+  removerTask() {
+    this.taskService.deleteTask(this.id).subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Remoção de task',
+          detail: 'Task removida com sucesso.',
+        });
+
+        this.taskRemoved.emit(this.id);
+      },
+      error: (err) => {
+        console.error('Erro ao deletar tarefa', err);
+      },
+    });
+  }
+
+  actionReceived(event: string) {
+    if (event == 'sucess') {
+      this.removerTask();
+    }
+    this.openModalConfirmation.set(false);
   }
 }

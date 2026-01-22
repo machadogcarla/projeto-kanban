@@ -1,4 +1,3 @@
-
 .lista {
   min-height: 400px;
   display: flex;
@@ -8,4 +7,54 @@
 
 p-card {
   cursor: move;
+}
+
+.descricao {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.chip-media {
+  background: #facc15 !important;
+}
+
+.chip-baixa {
+  background: #60a5fa !important;
+}
+
+.chip-alta {
+  background: #ff4000 !important;
+}
+
+.chip-urgente {
+  background: #950101 !important;
+}
+
+.p-chip {
+  color: #ffffff !important;
+  font-size: 16px !important;
+}
+
+.titulo-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.content-chip-mais-acoes {
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popover {
+  font-family: 'Source Sans 3', sans-serif !important;
+  cursor: pointer;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
 }

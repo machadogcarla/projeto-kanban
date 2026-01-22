@@ -33,3 +33,20 @@
   display: flex;
   margin-top: 100px;
 }
+
+app-task-card {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.lista {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-weight: 900;
+  text-align: center;
+}
