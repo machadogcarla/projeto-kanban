@@ -1,0 +1,11 @@
+
+.lista {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+p-card {
+  cursor: move;
+}

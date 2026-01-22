@@ -1,0 +1,15 @@
+/* kanban.component.css */
+
+.kanban {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.coluna {
+  flex: 1;
+  background: #f4f6f8;
+  border-radius: 8px;
+  padding: 10px;
+}
+
