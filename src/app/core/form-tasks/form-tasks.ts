@@ -21,8 +21,8 @@ import { Button } from 'primeng/button';
 import { Tag } from 'primeng/tag';
 import { maxArrayLength } from '../../validators/max-array-length/max-array-length';
 import { TaskService } from '../../services/task-service';
-import { ToastService } from '../../services/toast-message-service';
 import { TaskStateService } from '../../services/task-state';
+import { LogService } from '../../services/log-service';
 
 @Component({
   selector: 'app-form-tasks',
@@ -48,7 +48,6 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
   dataAtual = new Date();
   values: string[] | undefined;
   private taskService = inject(TaskService);
-  private toast = inject(ToastService);
   private taskState = inject(TaskStateService);
   closeDrawer = output<boolean>();
   @Input() taskSelecionada: Task | null = null;
@@ -66,7 +65,10 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
     { nome: 'Concluído', id_externo: 'concluido' },
   ];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private logService: LogService,
+  ) {}
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -139,8 +141,6 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
       status: status?.id_externo,
     };
 
-    console.log(request);
-
     if (this.taskSelecionada) {
       this.editTask(request);
     } else {
@@ -153,11 +153,10 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.taskState.tasks.set([...this.taskState.tasks(), request]);
         this.closeDrawer.emit(true);
-        this.toast.info(`Task criada com sucesso.`);
+        this.logService.log(`Task [ID: ${request?.id}] criada com sucesso.`, 'success');
       },
       error: (err) => {
-        console.error('Erro ao criar task', err);
-        this.toast.error('Erro ao criar task.');
+        this.logService.log('Erro ao criar task.', 'error');
       },
     });
   }
@@ -169,11 +168,10 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
           this.taskState.tasks().map((t) => (t.id === request.id ? request : t)),
         );
         this.closeDrawer.emit(true);
-        this.toast.info(`Task editada com sucesso.`);
+        this.logService.log(`Task [ID: ${request?.id}] editada com sucesso.`, 'success');
       },
       error: (err) => {
-        console.error('Erro ao editar task', err);
-        this.toast.error('Erro ao editar task.');
+        this.logService.log(`Erro ao editar task [ID: ${request?.id}]`, 'error');
       },
     });
   }

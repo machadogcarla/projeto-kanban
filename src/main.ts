@@ -4,6 +4,8 @@ import { App } from './app/app';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { erroInterceptor } from './app/interceptors/erro-interceptor';
 
 registerLocaleData(localePt);
 
@@ -12,6 +14,7 @@ bootstrapApplication(App, {
   providers: [
     ...(appConfig.providers || []),
     MessageService,
-    ConfirmationService
-  ]
-}).catch(err => console.error(err));
+    ConfirmationService,
+    provideHttpClient(withInterceptors([erroInterceptor])),
+  ],
+}).catch((err) => console.error(err));

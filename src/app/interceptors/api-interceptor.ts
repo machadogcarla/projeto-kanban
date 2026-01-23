@@ -1,4 +1,3 @@
-// api.interceptor.ts
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const apiInterceptor: HttpInterceptorFn = (req, next) => {

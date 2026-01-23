@@ -10,10 +10,10 @@ import { ColumnKanbanComponent } from '../column-kanban/column-kanban';
 import { ButtonModule } from 'primeng/button';
 import { FiltersComponent } from '../filters/filters';
 import { TaskStateService } from '../../services/task-state';
-import { ToastService } from '../../services/toast-message-service';
 import { UrgentTasksBadgeComponent } from '../urgent-tasks-badge/urgent-tasks-badge';
 import { Drawer, DrawerModule } from 'primeng/drawer';
 import { FormTasksComponent } from '../form-tasks/form-tasks';
+import { LogService } from '../../services/log-service';
 
 @Component({
   selector: 'app-list-tasks',
@@ -37,7 +37,6 @@ import { FormTasksComponent } from '../form-tasks/form-tasks';
 export class ListTasksComponent {
   private taskService = inject(TaskService);
   private taskState = inject(TaskStateService);
-  private toast = inject(ToastService);
 
   public loading = signal(true);
 
@@ -53,7 +52,7 @@ export class ListTasksComponent {
   public titleDrawer: string = '';
   public taskSelecionada: Task | null = null;
 
-  constructor() {
+  constructor(private logService: LogService) {
     this.carregarTarefas();
   }
 
@@ -66,8 +65,7 @@ export class ListTasksComponent {
         this.loading.set(false);
       },
       error: (err) => {
-        console.error('Erro ao carregar tarefas', err);
-        this.loading.set(false);
+        this.logService.log('Erro ao carregar listagem de tarefas',  'error');
       },
     });
   }
@@ -91,7 +89,7 @@ export class ListTasksComponent {
 
       this.editTask(
         task,
-        `Task ${task.id} movida de ${this.getLabelStatus(previousStatus)} para ${this.getLabelStatus(task.status)} com sucesso.`,
+        `Task [ID: ${task.id}] movida de ${this.getLabelStatus(previousStatus)} para ${this.getLabelStatus(task.status)} com sucesso.`,
       );
     }
   }
@@ -99,16 +97,11 @@ export class ListTasksComponent {
   private editTask(task: Task, messageToast: string) {
     this.taskService.editTask(<number>task?.id, task).subscribe({
       next: (data) => {
-        console.log(task);
-        console.log(this.tasks());
-
         this.taskState.tasks.set(this.taskState.tasks().map((t) => (t.id === task.id ? task : t)));
-
-        this.toast.success(messageToast);
+        this.logService.log(messageToast, 'success');
       },
       error: (err) => {
-        console.error('Erro ao editar task', err);
-        this.toast.error('Erro ao editar task.');
+        this.logService.log(`Erro ao editar task [ID: ${task?.id}]`,  'error');
       },
     });
   }

@@ -8,8 +8,8 @@ import { PopoverModule } from 'primeng/popover';
 import { ModalConfirmationComponent } from '../modal-confirmation/modal-confirmation';
 import { TaskService } from '../../services/task-service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ToastService } from '../../services/toast-message-service';
 import { TagModule } from 'primeng/tag';
+import { LogService } from '../../services/log-service';
 
 @Component({
   selector: 'app-task-card',
@@ -21,7 +21,7 @@ import { TagModule } from 'primeng/tag';
     PopoverModule,
     ModalConfirmationComponent,
     DragDropModule,
-    TagModule
+    TagModule,
   ],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
@@ -36,9 +36,11 @@ export class TaskCardComponent {
   public taskRemoved = output<number>();
   public taskToDone = output<Task>();
   public taskEdit = output<Task>();
-  private toast = inject(ToastService);
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private logService: LogService,
+  ) {}
 
   getPrioridade(prioridade: string): string {
     switch (prioridade) {
@@ -59,7 +61,6 @@ export class TaskCardComponent {
   }
 
   edit(task: Task) {
-    console.log('Editar');
     this.op.hide();
     this.taskEdit.emit(task);
   }
@@ -82,12 +83,12 @@ export class TaskCardComponent {
   deleteTask() {
     this.taskService.deleteTask(this.id).subscribe({
       next: (data) => {
-        this.toast.success(`Task ${this.id} removida com sucesso.`);
+        this.logService.log(`Task [ID: ${this.id}; removida com sucesso.`, 'success');
+
         this.taskRemoved.emit(this.id);
       },
       error: (err) => {
-        console.error('Erro ao deletar task', err);
-        this.toast.error('Erro ao deletar task.');
+        this.logService.log(`Erro ao deletar task. [ID: ${this.id};`, 'error');
       },
     });
   }

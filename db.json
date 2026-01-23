@@ -10,7 +10,7 @@
         "frontend",
         "ux"
       ],
-      "status": "a-fazer"
+      "status": "concluido"
     },
     {
       "id": 3,
@@ -41,7 +41,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "prazo": "2026-02-01",
       "prioridade": "baixa",
       "tags": [],
-      "status": "em-andamento"
+      "status": "concluido"
     },
     {
       "id": 8,
@@ -95,7 +95,7 @@
       "tags": [
         "backend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 11,
@@ -136,7 +136,7 @@
       "prazo": "2026-02-08",
       "prioridade": "media",
       "tags": [],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 15,
@@ -198,6 +198,15 @@
       "descricao": "Criar macarrons",
       "prazo": "2026-01-24",
       "prioridade": "alta",
+      "tags": [],
+      "status": "concluido"
+    },
+    {
+      "id": 21,
+      "titulo": "Biscoito",
+      "descricao": "Biscoito e",
+      "prazo": "2026-01-29",
+      "prioridade": "media",
       "tags": [],
       "status": "concluido"
     }
