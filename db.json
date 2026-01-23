@@ -15,10 +15,12 @@
     {
       "id": 3,
       "titulo": "Criar serviço de tarefas",
-      "descricao": "",
+      "descricao": "Descrição teste",
       "prazo": "2026-01-27",
       "prioridade": "media",
-      "tags": [],
+      "tags": [
+        "back"
+      ],
       "status": "em-andamento"
     },
     {
@@ -30,7 +32,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 5,
@@ -41,7 +43,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "a-fazer"
+      "status": "concluido"
     },
     {
       "id": 6,
@@ -73,7 +75,7 @@
         "frontend",
         "ux"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 9,
@@ -136,7 +138,7 @@
       "prazo": "2026-02-08",
       "prioridade": "media",
       "tags": [],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 15,
@@ -179,7 +181,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 19,
