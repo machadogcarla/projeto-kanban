@@ -1,22 +1,24 @@
 <form [formGroup]="formulario" class="div-filtros">
-  <p-floatlabel>
-    <input id="busca" type="text" pInputText formControlName="busca" />
-    <label for="busca">Buscar por tags ou título</label>
+  <p-floatlabel variant="in">
+    <p-iconfield>
+      <p-inputicon class="pi pi-search" />
+      <input id="busca" type="text" pInputText formControlName="busca" />
+      <label for="busca">Buscar por tags ou título</label>
+    </p-iconfield>
   </p-floatlabel>
 
-  <p-floatlabel class="w-full md:w-56">
+  <p-floatlabel variant="in" class="w-full md:w-56">
     <p-select
       class="select-filtro"
       [options]="priorityList"
       optionLabel="nome"
-      placeholder="Prioridade"
       formControlName="prioridade"
       inputId="prioridade"
     />
     <label for="prioridade">Prioridade</label>
   </p-floatlabel>
 
-  <p-floatlabel class="w-full md:w-56">
+  <p-floatlabel variant="in" class="w-full md:w-56">
     <p-datepicker
       selectionMode="range"
       formControlName="intervalo_datas"

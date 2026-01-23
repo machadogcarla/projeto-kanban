@@ -16,6 +16,7 @@ export class MessageErrorForm {
     minlength: (error) => `Mínimo de ${error.requiredLength} caracteres`,
     maxlength: (error) => `Máximo de ${error.requiredLength} caracteres`,
     palavraProibida: () => 'O título contém palavras proibidas (bug, problema)',
+    maxArrayLength: () =>  `Você pode adicionar no máximo 5 tags`,
   };
 
   get mensagemErro(): string | null {

@@ -29,7 +29,9 @@ export class TaskStateService {
       const matchData =
         !filters.intervalo_datas?.start ||
         !filters.intervalo_datas?.end ||
-        (t.prazo >= filters.intervalo_datas.start && t.prazo <= filters.intervalo_datas.end);
+        (t.prazo &&
+          t.prazo >= filters.intervalo_datas.start &&
+          t.prazo <= filters.intervalo_datas.end);
 
       return matchPrioridade && matchBusca && matchData;
     });

@@ -1,35 +1,105 @@
 <form [formGroup]="formulario" class="flex-inline" (ngSubmit)="submit()">
-  <p-floatlabel>
-    <input
-      id="titulo"
-      type="text"
-      pInputText
-      formControlName="titulo"
-      class="w-100"
-      [invalid]="isInvalid('titulo')"
-    />
-    <label for="titulo">Informe o título *</label>
-  </p-floatlabel>
+  <div>
+    <p-floatlabel variant="in">
+      <input
+        inputId="titulo"
+        type="text"
+        pInputText
+        formControlName="titulo"
+        class="w-100"
+        [invalid]="isInvalid('titulo')"
+      />
+      <label for="titulo">Informe o título *</label>
+    </p-floatlabel>
 
-  @if (isInvalid('titulo')) {
-    @if (formulario.get('titulo')?.errors) {
+    @if (isInvalid('titulo')) {
       <app-message-error-form [control]="formulario.get('titulo')" />
     }
+  </div>
 
-    <!-- @if (formulario.get('titulo')?.errors?.['required']) {
-        <app-message-component title="Campo é obrigatório" />
+  <div>
+    <p-floatlabel variant="in">
+      <textarea
+        pTextarea
+        inputId="over_textarea"
+        formControlName="descricao"
+        rows="5"
+        cols="56"
+        style="resize: none"
+      ></textarea>
+      <label for="over_textarea">Descrição</label>
+    </p-floatlabel>
+  </div>
+
+  <div>
+    <p-floatlabel variant="in">
+      <p-datepicker
+        class="w-100"
+        formControlName="prazo"
+        placeholder="Selecione a data"
+        dateFormat="dd/mm/yy"
+        showIcon="true"
+        inputId="over_data"
+        [minDate]="dataAtual"
+      ></p-datepicker>
+      <label for="over_data">Data de Entrega (Prazo)</label>
+    </p-floatlabel>
+  </div>
+
+  <div>
+    <p-floatlabel variant="in">
+      <p-select
+        class="w-100"
+        [options]="priorityList"
+        optionLabel="nome"
+        formControlName="prioridade"
+        inputId="prioridade"
+      />
+      <label for="prioridade">Prioridade *</label>
+    </p-floatlabel>
+  </div>
+
+  <div class="w-100 flex-column">
+    <p-floatlabel variant="in">
+      <input
+        type="text"
+        pInputText
+        #tagInput
+        placeholder="Digite uma tag e pressione Tab"
+        (keydown.tab)="addTag(tagInput)"
+        [disabled]="formulario.get('tags')?.value.length == 5"
+        class="w-100"
+      />
+      <label for="tags">Tags (máximo 5)</label>
+    </p-floatlabel>
+
+    @if (isInvalid('tags')) {
+      <app-message-error-form [control]="formulario.get('tags')" />
     }
 
-    @if (formulario.get('titulo')?.errors?.['minlength']) {
-        <app-message-component title="Mínimo de 5 caracteres" />
-    }
+    <div class="gap-2 mt-16 tags-container">
+      @for (tag of formulario.get('tags')?.value; track tag; let i = $index) {
+        <p-tag [value]="tag" [rounded]="true" (click)="removeTag(i)" icon="pi pi-times" />
+      }
+    </div>
 
-    @if (formulario.get('titulo')?.errors?.['maxlength']) {
-        <app-message-component title="Máximo de 80 caracteres" />
-    }
+    <small class="text-secondary mt-16">
+      {{ formulario.get('tags')?.value?.length || 0 }}/5 tags
+    </small>
+  </div>
 
-    @if (formulario.get('titulo')?.errors?.['palavraProibida']) {
-        <app-message-component title="O título contém palavras proibidas (bug, problema)" />
-    } -->
-  }
+  <div>
+    <p-floatlabel variant="in">
+      <p-select
+        class="w-100"
+        [options]="statusList"
+        optionLabel="nome"
+        formControlName="status"
+        inputId="status"
+      />
+      <label for="status">Status Inicial *</label>
+    </p-floatlabel>
+  </div>
+
+  <p-button label="Salvar" class="btn-salvar" type="submit" [disabled]="formulario.invalid" />
 </form>

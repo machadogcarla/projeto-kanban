@@ -6,6 +6,8 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TaskStateService } from '../../services/task-state';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
   selector: 'app-filters',
@@ -16,6 +18,8 @@ import { TaskStateService } from '../../services/task-state';
     DatePickerModule,
     InputTextModule,
     FloatLabelModule,
+    IconFieldModule,
+    InputIconModule,
   ],
   templateUrl: './filters.html',
   styleUrl: './filters.css',
@@ -43,15 +47,15 @@ export class FiltersComponent implements OnInit {
     });
 
     this.formulario.get('prioridade')?.valueChanges.subscribe((data) => {
-      if (data) this.emitFilters();
+      this.emitFilters();
     });
 
     this.formulario.get('busca')?.valueChanges.subscribe((data) => {
-      if (data) this.emitFilters();
+      this.emitFilters();
     });
 
     this.formulario.get('intervalo_datas')?.valueChanges.subscribe((data) => {
-      if (data) this.emitFilters();
+      this.emitFilters();
     });
   }
 
@@ -59,10 +63,12 @@ export class FiltersComponent implements OnInit {
     let start!: Date;
     let end!: Date;
 
-    if (this.formulario.get('intervalo_datas')?.value) {
-      [start, end] = this.formulario.get('intervalo_datas')?.value;
-    }
+    const range = this.formulario.get('intervalo_datas')?.value;
 
+    if (range?.[0]) {
+      start = range[0];
+      end = range[1] ?? new Date();
+    }
     // this.filtersEmit.emit({
     //   prioridade: this.formulario.get('prioridade')?.value?.id_externo,
     //   busca: this.formulario.get('busca')?.value,

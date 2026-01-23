@@ -9,6 +9,7 @@ import { ModalConfirmationComponent } from '../modal-confirmation/modal-confirma
 import { TaskService } from '../../services/task-service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ToastService } from '../../services/toast-message-service';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-task-card',
@@ -20,6 +21,7 @@ import { ToastService } from '../../services/toast-message-service';
     PopoverModule,
     ModalConfirmationComponent,
     DragDropModule,
+    TagModule
   ],
   templateUrl: './task-card.html',
   styleUrl: './task-card.css',
@@ -32,7 +34,8 @@ export class TaskCardComponent {
 
   private id!: number;
   public taskRemoved = output<number>();
-  public taskToDone = output<number>();
+  public taskToDone = output<Task>();
+  public taskEdit = output<Task>();
   private toast = inject(ToastService);
 
   constructor(private taskService: TaskService) {}
@@ -55,9 +58,10 @@ export class TaskCardComponent {
     return prioridade;
   }
 
-  edit(id: number) {
+  edit(task: Task) {
     console.log('Editar');
     this.op.hide();
+    this.taskEdit.emit(task);
   }
 
   remove(id: number, event: any) {
@@ -95,7 +99,7 @@ export class TaskCardComponent {
     this.openModalConfirmation.set(false);
   }
 
-  moveToDone(id: number) {
-    this.taskToDone.emit(id);
+  moveToDone(task: Task) {
+    this.taskToDone.emit(task);
   }
 }

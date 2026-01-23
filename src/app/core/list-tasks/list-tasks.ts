@@ -11,9 +11,9 @@ import { ButtonModule } from 'primeng/button';
 import { FiltersComponent } from '../filters/filters';
 import { TaskStateService } from '../../services/task-state';
 import { ToastService } from '../../services/toast-message-service';
-import { UrgentTasksBadgeComponent } from "../urgent-tasks-badge/urgent-tasks-badge";
+import { UrgentTasksBadgeComponent } from '../urgent-tasks-badge/urgent-tasks-badge';
 import { Drawer, DrawerModule } from 'primeng/drawer';
-import { FormTasksComponent } from "../form-tasks/form-tasks";
+import { FormTasksComponent } from '../form-tasks/form-tasks';
 
 @Component({
   selector: 'app-list-tasks',
@@ -29,8 +29,8 @@ import { FormTasksComponent } from "../form-tasks/form-tasks";
     UrgentTasksBadgeComponent,
     Drawer,
     DrawerModule,
-    FormTasksComponent
-],
+    FormTasksComponent,
+  ],
   templateUrl: './list-tasks.html',
   styleUrl: './list-tasks.css',
 })
@@ -51,6 +51,7 @@ export class ListTasksComponent {
 
   public openDrawer: boolean = false;
   public titleDrawer: string = '';
+  public taskSelecionada: Task | null = null;
 
   constructor() {
     this.carregarTarefas();
@@ -84,27 +85,26 @@ export class ListTasksComponent {
         event.currentIndex,
       );
 
+      const previousStatus = event.container.data[event.currentIndex].status;
       const task = event.container.data[event.currentIndex];
       task.status = event.container.id;
 
-      this.taskState.tasks.set(
-        this.taskState.tasks().map((t) => (t.id === task.id ? { ...task } : t)),
+      this.editTask(
+        task,
+        `Task ${task.id} movida de ${this.getLabelStatus(previousStatus)} para ${this.getLabelStatus(task.status)} com sucesso.`,
       );
-
-      this.editTask(task, undefined, 'drop');
     }
   }
 
-  private editTask(task: Task, id?: number, acao?: string) {
-    this.taskService.editTask(task.id, task).subscribe({
+  private editTask(task: Task, messageToast: string) {
+    this.taskService.editTask(<number>task?.id, task).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log(task);
         console.log(this.tasks());
+
         this.taskState.tasks.set(this.taskState.tasks().map((t) => (t.id === task.id ? task : t)));
 
-        if(acao){
-          this.toast.info(`Task ${task.id} movida com sucesso.`);
-        }
+        this.toast.success(messageToast);
       },
       error: (err) => {
         console.error('Erro ao editar task', err);
@@ -113,16 +113,42 @@ export class ListTasksComponent {
     });
   }
 
-  public onTaskToDone(id: number) {
+  public onTaskToDone(task: Task) {
     this.taskState.tasks.set(
-      this.taskState.tasks().map((t) => (t.id === id ? { ...t, status: 'concluido' } : t)),
+      this.taskState.tasks().map((t) => (t.id === task?.id ? { ...t, status: 'concluido' } : t)),
     );
-
-    this.toast.success(`Task ${id} movida para coluna concluído.`);
+    this.editTask(task, `Task ${task?.id} movida para concluído.`);
   }
 
-  public openDrawerTask(title: string){
+  public openDrawerTask(title?: string) {
     this.openDrawer = !this.openDrawer;
-    this.titleDrawer = title;
+    if (title && this.openDrawer) {
+      this.titleDrawer = title;
+
+      if (title == 'Nova task') {
+        this.taskSelecionada = null;
+      }
+    }
+  }
+
+  public onTaskToEdit(task: Task) {
+    this.taskSelecionada = task;
+    this.openDrawerTask('Editar task');
+  }
+
+  getLabelStatus(status: string) : string{
+    switch (status) {
+      case 'a-fazer':
+        return 'A fazer';
+        break;
+      case 'em-andamento':
+        return 'Em andamento';
+        break;
+      case 'concluido':
+        return 'Concluído';
+        break;
+    }
+
+    return '';
   }
 }

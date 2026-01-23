@@ -7,14 +7,15 @@
       "prazo": "2026-01-26",
       "prioridade": "alta",
       "tags": [
-        "frontend"
+        "frontend",
+        "ux"
       ],
       "status": "a-fazer"
     },
     {
       "id": 3,
       "titulo": "Criar serviço de tarefas",
-      "descricao": "Implementar TaskService com HttpClient",
+      "descricao": "",
       "prazo": "2026-01-27",
       "prioridade": "media",
       "tags": [],
@@ -29,7 +30,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "em-andamento"
+      "status": "concluido"
     },
     {
       "id": 5,
@@ -51,7 +52,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 7,
@@ -60,7 +61,7 @@
       "prazo": "2026-02-01",
       "prioridade": "baixa",
       "tags": [],
-      "status": "a-fazer"
+      "status": "em-andamento"
     },
     {
       "id": 8,
@@ -72,7 +73,7 @@
         "frontend",
         "ux"
       ],
-      "status": "a-fazer"
+      "status": "em-andamento"
     },
     {
       "id": 9,
@@ -94,7 +95,7 @@
       "tags": [
         "backend"
       ],
-      "status": "a-fazer"
+      "status": "em-andamento"
     },
     {
       "id": 11,
@@ -103,7 +104,7 @@
       "prazo": "2026-02-05",
       "prioridade": "baixa",
       "tags": [],
-      "status": "a-fazer"
+      "status": "em-andamento"
     },
     {
       "id": 12,
@@ -126,7 +127,7 @@
         "mobile",
         "ux"
       ],
-      "status": "concluido"
+      "status": "a-fazer"
     },
     {
       "id": 14,
@@ -146,7 +147,59 @@
       "tags": [
         "mobile"
       ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 16,
+      "titulo": "Nova task",
+      "descricao": "Sou uma nova task",
+      "prioridade": "media",
+      "tags": [
+        "oi"
+      ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 17,
+      "titulo": "Criar labels",
+      "descricao": "Criar labels em usuários",
+      "prazo": "2026-01-28",
+      "prioridade": "media",
+      "tags": [
+        "backend"
+      ],
+      "status": "a_fazer"
+    },
+    {
+      "id": 18,
+      "titulo": "Estudar angular hoje",
+      "descricao": "Estudar angular para aprender",
+      "prazo": "2026-01-29",
+      "prioridade": "alta",
+      "tags": [
+        "frontend"
+      ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 19,
+      "titulo": "A fazer 3",
+      "descricao": "A fazer 3",
+      "prazo": "2026-01-24",
+      "prioridade": "alta",
+      "tags": [
+        "ux"
+      ],
       "status": "a-fazer"
+    },
+    {
+      "id": 20,
+      "titulo": "Criar macarrons",
+      "descricao": "Criar macarrons",
+      "prazo": "2026-01-24",
+      "prioridade": "alta",
+      "tags": [],
+      "status": "concluido"
     }
   ]
 }

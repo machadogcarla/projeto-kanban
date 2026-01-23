@@ -1,27 +1,19 @@
-@for (tarefa of lista; track tarefa.id) {
+@for (task of lista; track task.id) {
   <p-card
     cdkDrag
     [ngClass]="{
-      'card-urgente': tarefa.prioridade === 'urgente',
-      'card-media': tarefa.prioridade === 'media',
-      'card-alta': tarefa.prioridade === 'alta',
-      'card-baixa': tarefa.prioridade === 'baixa',
+      'card-urgente': task.prioridade === 'urgente',
+      'card-media': task.prioridade === 'media',
+      'card-alta': task.prioridade === 'alta',
+      'card-baixa': task.prioridade === 'baixa',
     }"
   >
     <ng-template pTemplate="title" class="titulo-card">
       <div class="titulo-card">
-        <span>{{ tarefa?.titulo }}</span>
+        <span>{{ task?.titulo }}</span>
 
         <div class="content-chip-mais-acoes">
-          <p-chip
-            [label]="getPrioridade(tarefa.prioridade)"
-            [ngClass]="{
-              'chip-urgente': tarefa.prioridade === 'urgente',
-              'chip-media': tarefa.prioridade === 'media',
-              'chip-alta': tarefa.prioridade === 'alta',
-              'chip-baixa': tarefa.prioridade === 'baixa',
-            }"
-          />
+          <p-tag [value]="getPrioridade(task.prioridade)" severity="info" [rounded]="true" />
           <i
             class="pi pi-ellipsis-v"
             style="font-size: 1rem; cursor: pointer"
@@ -32,25 +24,25 @@
 
       <p-popover #op>
         <div class="flex flex-col gap-4 popover">
-          <div (click)="edit(tarefa.id)">Editar</div>
-          <div (click)="remove(tarefa.id, $event)">Remover</div>
-          @if (tarefa?.status != 'concluido') {
-            <div (click)="moveToDone(tarefa.id)">Mover para concluído</div>
+          <div (click)="edit(task)">Editar</div>
+          <div (click)="remove(task.id, $event)">Remover</div>
+          @if (task?.status != 'concluido') {
+            <div (click)="moveToDone(task)">Mover para concluído</div>
           }
         </div>
       </p-popover>
     </ng-template>
 
-    @if (tarefa?.descricao) {
-      <p class="descricao">{{ tarefa?.descricao }}</p>
+    @if (task?.descricao) {
+      <p class="descricao">{{ task?.descricao }}</p>
     }
 
-    @if (tarefa?.prazo) {
-      <small>Prazo: {{ tarefa?.prazo | date }}</small>
+    @if (task?.prazo) {
+      <small>Prazo: {{ task?.prazo | date }}</small>
     }
 
     <div class="tags">
-      @for (tag of tarefa.tags; track tag) {
+      @for (tag of task.tags; track tag) {
         <p-chip [label]="tag" class="tags" />
       }
     </div>
@@ -63,4 +55,3 @@
     (actionReceived)="actionReceived($event)"
   ></app-modal-confirmation>
 }
-

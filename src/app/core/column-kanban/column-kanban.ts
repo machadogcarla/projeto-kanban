@@ -18,7 +18,8 @@ export class ColumnKanbanComponent {
 
   dropped = output<CdkDragDrop<Task[]>>();
   taskRemoved = output<number>();
-  taskToDone = output<number>();
+  taskToDone = output<Task>();
+  taskEdit = output<Task>();
 
   drop(event: CdkDragDrop<Task[]>) {
     this.dropped.emit(event);
