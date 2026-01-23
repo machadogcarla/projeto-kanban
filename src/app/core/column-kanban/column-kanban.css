@@ -1,21 +1,28 @@
 .coluna {
-   flex: 1 1 300px;
+  flex: 0 0 300px;
+  min-width: 300px;
+  max-width: 400px;
+
   border-radius: 8px;
   padding: 20px;
   min-height: 800px;
-  max-width: 100%;
-  min-width: 280px;
   border: 1px solid #f7eee0;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.lista {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h2 {
+  text-align: center;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 240px;
-}
-
-h2 {
-  text-align: center;
 }

@@ -7,7 +7,7 @@
 
 p-card {
   cursor: move;
-  height: 205px;
+  height: 249px;
   display: flex;
   flex-direction: column;
 }
@@ -21,6 +21,7 @@ p-card .p-card-body {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  font-size: 13px;
 }
 
 .p-chip {

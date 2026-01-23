@@ -3,7 +3,6 @@ import { Task } from '../../interface/task';
 import { TaskService } from '../../services/task-service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
-import { PanelModule } from 'primeng/panel';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnKanbanComponent } from '../column-kanban/column-kanban';
@@ -21,7 +20,6 @@ import { LogService } from '../../services/log-service';
   imports: [
     CommonModule,
     ProgressSpinnerModule,
-    PanelModule,
     DragDropModule,
     ButtonModule,
     ColumnKanbanComponent,

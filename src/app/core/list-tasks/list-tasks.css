@@ -9,14 +9,25 @@
   flex-wrap: wrap;
 }
 
-.spinner {
-  display: flex;
+.container {
+  width: 80%;
+  overflow-x: hidden;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 
-.container {
-  width: 90%;
-  margin: 0 auto;
-  margin-top: 40px;
+.kanban-board {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 16px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.spinner {
+  display: flex;
 }
 
 .spinner-container {
