@@ -1,0 +1,35 @@
+<form [formGroup]="formulario" class="flex-inline" (ngSubmit)="submit()">
+  <p-floatlabel>
+    <input
+      id="titulo"
+      type="text"
+      pInputText
+      formControlName="titulo"
+      class="w-100"
+      [invalid]="isInvalid('titulo')"
+    />
+    <label for="titulo">Informe o título *</label>
+  </p-floatlabel>
+
+  @if (isInvalid('titulo')) {
+    @if (formulario.get('titulo')?.errors) {
+      <app-message-error-form [control]="formulario.get('titulo')" />
+    }
+
+    <!-- @if (formulario.get('titulo')?.errors?.['required']) {
+        <app-message-component title="Campo é obrigatório" />
+    }
+
+    @if (formulario.get('titulo')?.errors?.['minlength']) {
+        <app-message-component title="Mínimo de 5 caracteres" />
+    }
+
+    @if (formulario.get('titulo')?.errors?.['maxlength']) {
+        <app-message-component title="Máximo de 80 caracteres" />
+    }
+
+    @if (formulario.get('titulo')?.errors?.['palavraProibida']) {
+        <app-message-component title="O título contém palavras proibidas (bug, problema)" />
+    } -->
+  }
+</form>

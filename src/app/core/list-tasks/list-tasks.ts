@@ -1,15 +1,19 @@
 import { Component, signal, inject, computed } from '@angular/core';
-import { Task } from '../interface/task';
-import { TaskService } from '../services/task-service';
+import { Task } from '../../interface/task';
+import { TaskService } from '../../services/task-service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
 import { PanelModule } from 'primeng/panel';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ColumnKanban } from '../column-kanban/column-kanban';
+import { ColumnKanbanComponent } from '../column-kanban/column-kanban';
 import { ButtonModule } from 'primeng/button';
-import { Filters } from '../core/filters/filters';
-import { TaskStateService } from '../services/task-state';
+import { FiltersComponent } from '../filters/filters';
+import { TaskStateService } from '../../services/task-state';
+import { ToastService } from '../../services/toast-message-service';
+import { UrgentTasksBadgeComponent } from "../urgent-tasks-badge/urgent-tasks-badge";
+import { Drawer, DrawerModule } from 'primeng/drawer';
+import { FormTasksComponent } from "../form-tasks/form-tasks";
 
 @Component({
   selector: 'app-list-tasks',
@@ -19,16 +23,21 @@ import { TaskStateService } from '../services/task-state';
     ProgressSpinnerModule,
     PanelModule,
     DragDropModule,
-    ColumnKanban,
     ButtonModule,
-    Filters,
-  ],
+    ColumnKanbanComponent,
+    FiltersComponent,
+    UrgentTasksBadgeComponent,
+    Drawer,
+    DrawerModule,
+    FormTasksComponent
+],
   templateUrl: './list-tasks.html',
   styleUrl: './list-tasks.css',
 })
-export class ListTasks {
+export class ListTasksComponent {
   private taskService = inject(TaskService);
   private taskState = inject(TaskStateService);
+  private toast = inject(ToastService);
 
   public loading = signal(true);
 
@@ -39,6 +48,9 @@ export class ListTasks {
   public inProgress = computed(() => this.tasks().filter((t) => t.status === 'em-andamento'));
 
   public done = computed(() => this.tasks().filter((t) => t.status === 'concluido'));
+
+  public openDrawer: boolean = false;
+  public titleDrawer: string = '';
 
   constructor() {
     this.carregarTarefas();
@@ -79,19 +91,24 @@ export class ListTasks {
         this.taskState.tasks().map((t) => (t.id === task.id ? { ...task } : t)),
       );
 
-      this.editTask(task);
+      this.editTask(task, undefined, 'drop');
     }
   }
 
-  private editTask(task: Task, id?: number) {
+  private editTask(task: Task, id?: number, acao?: string) {
     this.taskService.editTask(task.id, task).subscribe({
       next: (data) => {
         console.log(data);
         console.log(this.tasks());
         this.taskState.tasks.set(this.taskState.tasks().map((t) => (t.id === task.id ? task : t)));
+
+        if(acao){
+          this.toast.info(`Task ${task.id} movida com sucesso.`);
+        }
       },
       error: (err) => {
-        console.error('Erro ao editar tarefas', err);
+        console.error('Erro ao editar task', err);
+        this.toast.error('Erro ao editar task.');
       },
     });
   }
@@ -100,5 +117,12 @@ export class ListTasks {
     this.taskState.tasks.set(
       this.taskState.tasks().map((t) => (t.id === id ? { ...t, status: 'concluido' } : t)),
     );
+
+    this.toast.success(`Task ${id} movida para coluna concluído.`);
+  }
+
+  public openDrawerTask(title: string){
+    this.openDrawer = !this.openDrawer;
+    this.titleDrawer = title;
   }
 }

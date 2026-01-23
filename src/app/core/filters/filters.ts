@@ -20,9 +20,9 @@ import { TaskStateService } from '../../services/task-state';
   templateUrl: './filters.html',
   styleUrl: './filters.css',
 })
-export class Filters implements OnInit {
+export class FiltersComponent implements OnInit {
   priorityList: Prioridade[] = [
-    { nome: '', id_externo: '' },
+    { nome: '   ', id_externo: '' },
     { nome: 'Urgente', id_externo: 'urgente' },
     { nome: 'Alta', id_externo: 'alta' },
     { nome: 'Média', id_externo: 'media' },

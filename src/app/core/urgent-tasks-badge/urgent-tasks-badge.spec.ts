@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ColumnKanban } from './column-kanban';
+import { UrgentTasksBadgeComponent } from './urgent-tasks-badge';
 
-describe('ColumnKanban', () => {
-  let component: ColumnKanban;
-  let fixture: ComponentFixture<ColumnKanban>;
+describe('UrgentTasksBadgeComponent', () => {
+  let component: UrgentTasksBadgeComponent;
+  let fixture: ComponentFixture<UrgentTasksBadgeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColumnKanban]
+      imports: [UrgentTasksBadgeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ColumnKanban);
+    fixture = TestBed.createComponent(UrgentTasksBadgeComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

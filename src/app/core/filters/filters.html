@@ -1,27 +1,30 @@
 <form [formGroup]="formulario" class="div-filtros">
   <p-floatlabel>
-    <input
-      id="busca"
-      type="text"
-      pInputText
-      formControlName="busca"
-    />
+    <input id="busca" type="text" pInputText formControlName="busca" />
     <label for="busca">Buscar por tags ou título</label>
   </p-floatlabel>
 
-  <p-select
-    class="select-filtro"
-    [options]="priorityList"
-    optionLabel="nome"
-    placeholder="Prioridade"
-    formControlName="prioridade"
-  />
+  <p-floatlabel class="w-full md:w-56">
+    <p-select
+      class="select-filtro"
+      [options]="priorityList"
+      optionLabel="nome"
+      placeholder="Prioridade"
+      formControlName="prioridade"
+      inputId="prioridade"
+    />
+    <label for="prioridade">Prioridade</label>
+  </p-floatlabel>
 
-  <p-datepicker
-    selectionMode="range"
-    formControlName="intervalo_datas"
-    placeholder="Selecionar período"
-    dateFormat="dd/mm/yy"
-    showIcon="true"
-  ></p-datepicker>
+  <p-floatlabel class="w-full md:w-56">
+    <p-datepicker
+      selectionMode="range"
+      formControlName="intervalo_datas"
+      placeholder="Selecionar período"
+      dateFormat="dd/mm/yy"
+      showIcon="true"
+      inputId="range"
+    ></p-datepicker>
+    <label for="id">Período</label>
+  </p-floatlabel>
 </form>

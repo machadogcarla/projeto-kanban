@@ -9,9 +9,8 @@ import { ModalConfirmationInterface } from '../../interface/task';
   imports: [ToastModule, ConfirmDialogModule],
   templateUrl: './modal-confirmation.html',
   styleUrl: './modal-confirmation.css',
-  providers: [ConfirmationService],
 })
-export class ModalConfirmation implements OnInit {
+export class ModalConfirmationComponent implements OnInit {
   @Input() conteudoModal!: ModalConfirmationInterface;
   actionReceived = output<string>();
 

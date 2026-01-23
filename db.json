@@ -9,7 +9,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 3,
@@ -18,7 +18,7 @@
       "prazo": "2026-01-27",
       "prioridade": "media",
       "tags": [],
-      "status": "a-fazer"
+      "status": "em-andamento"
     },
     {
       "id": 4,
@@ -29,7 +29,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 5,
@@ -94,7 +94,7 @@
       "tags": [
         "backend"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 11,
@@ -146,7 +146,7 @@
       "tags": [
         "mobile"
       ],
-      "status": "concluido"
+      "status": "a-fazer"
     }
   ]
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TaskCardComponent } from './task-card';
+import { MessageErrorForm } from './message-error-form';
 
-describe('TaskCardComponent', () => {
-  let component: TaskCardComponent;
-  let fixture: ComponentFixture<TaskCardComponent>;
+describe('MessageErrorForm', () => {
+  let component: MessageErrorForm;
+  let fixture: ComponentFixture<MessageErrorForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TaskCardComponent]
+      imports: [MessageErrorForm]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TaskCardComponent);
+    fixture = TestBed.createComponent(MessageErrorForm);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

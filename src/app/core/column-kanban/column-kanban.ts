@@ -1,16 +1,16 @@
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component, Input, output } from '@angular/core';
-import { TaskCard } from '../core/task-card/task-card';
-import { Task } from '../interface/task';
+import { TaskCardComponent } from '../task-card/task-card';
+import { Task } from '../../interface/task';
 
 @Component({
   selector: 'app-column-kanban',
-  imports: [CommonModule, DragDropModule, TaskCard],
+  imports: [CommonModule, DragDropModule, TaskCardComponent],
   templateUrl: './column-kanban.html',
   styleUrl: './column-kanban.css',
 })
-export class ColumnKanban {
+export class ColumnKanbanComponent {
   @Input() titulo!: string;
   @Input() status!: string;
   @Input() lista: Task[] = [];
