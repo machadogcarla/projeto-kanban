@@ -1,0 +1,19 @@
+<div
+  class="coluna"
+  cdkDropList
+  [id]="status"
+  [cdkDropListData]="lista"
+  [cdkDropListConnectedTo]="statusList"
+  (cdkDropListDropped)="drop($event)"
+>
+  <h2>{{ titulo }}</h2>
+
+  <div>
+    <app-task-card
+      class="card"
+      [lista]="lista"
+      (taskRemoved)="taskRemoved.emit($event)"
+      (taskToDone)="taskToDone.emit($event)"
+    />
+  </div>
+</div>

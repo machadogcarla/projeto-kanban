@@ -1,13 +1,152 @@
 {
   "tasks": [
     {
+      "id": 2,
+      "titulo": "Configurar Angular",
+      "descricao": "Criar projeto e instalar dependências",
+      "prazo": "2026-01-26",
+      "prioridade": "alta",
+      "tags": [
+        "frontend"
+      ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 3,
+      "titulo": "Criar serviço de tarefas",
+      "descricao": "Implementar TaskService com HttpClient",
+      "prazo": "2026-01-27",
+      "prioridade": "media",
+      "tags": [],
+      "status": "a-fazer"
+    },
+    {
+      "id": 4,
+      "titulo": "Implementar drag and drop",
+      "descricao": "Permitir mover tarefas entre colunas",
+      "prazo": "2026-01-28",
+      "prioridade": "urgente",
+      "tags": [
+        "frontend"
+      ],
+      "status": "concluido"
+    },
+    {
+      "id": 5,
+      "titulo": "Criar modal de confirmação",
+      "descricao": "Modal para confirmar exclusão de tarefas",
+      "prazo": "2026-01-29",
+      "prioridade": "alta",
+      "tags": [
+        "frontend"
+      ],
+      "status": "em-andamento"
+    },
+    {
       "id": 6,
       "titulo": "Listagem de tarefas",
       "descricao": "Criar tela de listagem das tarefas no Kanban",
-      "prazo": "",
+      "prazo": "2026-01-30",
       "prioridade": "media",
-      "tags": "frontend",
+      "tags": [
+        "frontend"
+      ],
+      "status": "concluido"
+    },
+    {
+      "id": 7,
+      "titulo": "Criar filtro por status",
+      "descricao": "Permitir filtrar tarefas por coluna",
+      "prazo": "2026-02-01",
+      "prioridade": "baixa",
+      "tags": [],
       "status": "a-fazer"
+    },
+    {
+      "id": 8,
+      "titulo": "Criar filtro por prioridade",
+      "descricao": "Permitir filtrar tarefas por prioridade",
+      "prazo": "2026-02-02",
+      "prioridade": "baixa",
+      "tags": [
+        "frontend",
+        "ux"
+      ],
+      "status": "a-fazer"
+    },
+    {
+      "id": 9,
+      "titulo": "Validação de formulários",
+      "descricao": "Validar campos obrigatórios",
+      "prazo": "2026-02-03",
+      "prioridade": "alta",
+      "tags": [
+        "ux"
+      ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 10,
+      "titulo": "Persistir no backend",
+      "descricao": "Salvar alterações no json-server",
+      "prazo": "2026-02-04",
+      "prioridade": "urgente",
+      "tags": [
+        "backend"
+      ],
+      "status": "em-andamento"
+    },
+    {
+      "id": 11,
+      "titulo": "Criar toast de sucesso",
+      "descricao": "Exibir mensagem ao salvar",
+      "prazo": "2026-02-05",
+      "prioridade": "baixa",
+      "tags": [],
+      "status": "a-fazer"
+    },
+    {
+      "id": 12,
+      "titulo": "Criar toast de erro",
+      "descricao": "Exibir mensagem ao falhar",
+      "prazo": "2026-02-06",
+      "prioridade": "media",
+      "tags": [],
+      "status": "concluido"
+    },
+    {
+      "id": 13,
+      "titulo": "Refatorar componentes",
+      "descricao": "Melhorar organização do código",
+      "prazo": "2026-02-07",
+      "prioridade": "alta",
+      "tags": [
+        "frontend",
+        "tags",
+        "mobile",
+        "ux"
+      ],
+      "status": "concluido"
+    },
+    {
+      "id": 14,
+      "titulo": "Criar testes",
+      "descricao": "Adicionar testes unitários",
+      "prazo": "2026-02-08",
+      "prioridade": "media",
+      "tags": [],
+      "status": "concluido"
+    },
+    {
+      "id": 15,
+      "titulo": "Deploy da aplicação",
+      "descricao": "Publicar sistema em produção",
+      "prazo": "2026-02-10",
+      "prioridade": "urgente",
+      "tags": [
+        "mobile"
+      ],
+      "status": "concluido"
     }
   ]
 }

@@ -39,12 +39,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  font-family: 'Source Sans 3', sans-serif;
+.p-component {
+  font-family: var(--font-family) !important;
 }
 
 
-
-.p-component {
-  font-family: var(--font-family) !important;
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: 'Source Sans 3', sans-serif;
 }

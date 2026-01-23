@@ -4,7 +4,7 @@ export interface Task {
   descricao: string;
   prazo: string;
   prioridade: string;
-  tags?: string;
+  tags?: string[];
   status: string;
 }
 
@@ -16,5 +16,9 @@ export interface ModalConfirmationInterface {
  rejectLabel: string;
  acceptLabel: string;
  icon: string;
+}
 
+export interface Prioridade {
+  id_externo: string;
+  nome: string;
 }

@@ -7,50 +7,44 @@
 }
 
 @if (!loading()) {
+  <div class="div-filtros">
+    <app-filters/>
+    
+    <p-button label="Nova task" icon="pi pi-plus" />
+  </div>
+
   <div class="container">
     <p-panel>
       <div class="kanban">
-        <div
-          class="coluna"
-          cdkDropList
-          id="a-fazer"
-          [cdkDropListData]="todo()"
-          [cdkDropListConnectedTo]="['em-andamento', 'concluido']"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <h2>A Fazer</h2>
-          <div class="lista">
-            <app-task-card [lista]="todo()" (taskRemoved)="onTaskRemoved($event)" />
-          </div>
-        </div>
+        <app-column-kanban
+          titulo="A Fazer"
+          status="a-fazer"
+          [lista]="todo()"
+          [statusList]="['em-andamento', 'concluido']"
+          (dropped)="drop($event)"
+          (taskRemoved)="onTaskRemoved($event)"
+          (taskToDone)="onTaskToDone($event)"
+        />
 
-        <div
-          class="coluna"
-          cdkDropList
-          id="em-andamento"
-          [cdkDropListData]="inProgress()"
-          [cdkDropListConnectedTo]="['a-fazer', 'concluido']"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <h2>Em Andamento</h2>
-          <div class="lista">
-            <app-task-card [lista]="inProgress()" (taskRemoved)="onTaskRemoved($event)" />
-          </div>
-        </div>
+        <app-column-kanban
+          titulo="Em Andamento"
+          status="em-andamento"
+          [lista]="inProgress()"
+          [statusList]="['a-fazer', 'concluido']"
+          (dropped)="drop($event)"
+          (taskRemoved)="onTaskRemoved($event)"
+          (taskToDone)="onTaskToDone($event)"
+        />
 
-        <div
-          class="coluna"
-          cdkDropList
-          id="concluido"
-          [cdkDropListData]="done()"
-          [cdkDropListConnectedTo]="['a-fazer', 'em-andamento']"
-          (cdkDropListDropped)="drop($event)"
-        >
-          <h2>Concluído</h2>
-          <div class="lista">
-            <app-task-card [lista]="done()" (taskRemoved)="onTaskRemoved($event)"  />
-          </div>
-        </div>
+        <app-column-kanban
+          titulo="Concluído"
+          status="concluido"
+          [lista]="done()"
+          [statusList]="['a-fazer', 'em-andamento']"
+          (dropped)="drop($event)"
+          (taskRemoved)="onTaskRemoved($event)"
+          (taskToDone)="onTaskToDone($event)"
+        />
       </div>
     </p-panel>
   </div>

@@ -1,5 +1,13 @@
 @for (tarefa of lista; track tarefa.id) {
-  <p-card cdkDrag>
+  <p-card
+    cdkDrag
+    [ngClass]="{
+      'card-urgente': tarefa.prioridade === 'urgente',
+      'card-media': tarefa.prioridade === 'media',
+      'card-alta': tarefa.prioridade === 'alta',
+      'card-baixa': tarefa.prioridade === 'baixa',
+    }"
+  >
     <ng-template pTemplate="title" class="titulo-card">
       <div class="titulo-card">
         <span>{{ tarefa?.titulo }}</span>
@@ -9,8 +17,8 @@
             [label]="getPrioridade(tarefa.prioridade)"
             [ngClass]="{
               'chip-urgente': tarefa.prioridade === 'urgente',
-              'chip-media': tarefa.prioridade === 'alta',
-              'chip-alta': tarefa.prioridade === 'media',
+              'chip-media': tarefa.prioridade === 'media',
+              'chip-alta': tarefa.prioridade === 'alta',
               'chip-baixa': tarefa.prioridade === 'baixa',
             }"
           />
@@ -24,16 +32,28 @@
 
       <p-popover #op>
         <div class="flex flex-col gap-4 popover">
-          <div (click)="editar(tarefa.id)">Editar</div>
-          <div (click)="remover(tarefa.id, $event)">Remover</div>
+          <div (click)="edit(tarefa.id)">Editar</div>
+          <div (click)="remove(tarefa.id, $event)">Remover</div>
+          @if (tarefa?.status != 'concluido') {
+            <div (click)="moveToDone(tarefa.id)">Mover para concluído</div>
+          }
         </div>
       </p-popover>
     </ng-template>
 
-    <p class="descricao">{{ tarefa?.descricao }}</p>
+    @if (tarefa?.descricao) {
+      <p class="descricao">{{ tarefa?.descricao }}</p>
+    }
+
     @if (tarefa?.prazo) {
       <small>Prazo: {{ tarefa?.prazo | date }}</small>
     }
+
+    <div class="tags">
+      @for (tag of tarefa.tags; track tag) {
+        <p-chip [label]="tag" class="tags" />
+      }
+    </div>
   </p-card>
 }
 

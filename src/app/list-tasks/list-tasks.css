@@ -2,13 +2,10 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-}
-
-.coluna {
-  flex: 1;
-  background: #f4f6f8;
-  border-radius: 8px;
-  padding: 10px;
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .spinner {
@@ -23,10 +20,13 @@
 
 .div-titulo {
   font-size: 30px;
-  width: 30%;
   margin-left: 90px;
   font-weight: 700;
   color: #454040;
+  margin-top: 40px;
+  text-align: center;
+  margin-bottom: 30px
+
 }
 
 .spinner-container {
@@ -40,13 +40,15 @@ app-task-card {
   flex-direction: column;
 }
 
-.lista {
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
 h2 {
   font-weight: 900;
   text-align: center;
+}
+
+.div-filtros {
+  display: flex;
+  margin-left: 20px;
+  margin-right: 100px;
+  justify-content: end;
+  gap: 30px;
 }

@@ -7,6 +7,13 @@
 
 p-card {
   cursor: move;
+  height: 205px;
+  display: flex;
+  flex-direction: column;
+}
+
+p-card .p-card-body {
+  overflow: hidden;
 }
 
 .descricao {
@@ -57,4 +64,28 @@ p-card {
   gap: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.tags {
+  color: lightblue !important;
+  font-size: 12px !important;
+  gap: 10px;
+  display: flex;
+  margin-top: 7px;
+}
+
+.card-media {
+  background: #b6e4fb !important;
+}
+
+.card-baixa {
+  background: #c2ffc1 !important;
+}
+
+.card-alta {
+  background: #fffea5 !important;
+}
+
+.card-urgente {
+  background: #ff7575 !important;
 }

@@ -1,0 +1,9 @@
+.select-filtro {
+  width: 180px;
+}
+
+
+.div-filtros {
+    display: flex;
+    gap: 30px;
+}

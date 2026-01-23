@@ -1,0 +1,20 @@
+.coluna {
+  flex: 1;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 800px;
+  min-width: 400px;
+  border: 1px solid #f7eee0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 240px;
+}
+
+h2 {
+  text-align: center;
+}

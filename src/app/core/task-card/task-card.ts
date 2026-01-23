@@ -35,7 +35,8 @@ export class TaskCard {
 
   private messageService = inject(MessageService);
   private id!: number;
-  taskRemoved = output<number>();
+  public taskRemoved = output<number>();
+  public taskToDone = output<number>();
 
   constructor(private taskService: TaskService) {}
 
@@ -57,12 +58,12 @@ export class TaskCard {
     return prioridade;
   }
 
-  editar(id: number) {
+  edit(id: number) {
     console.log('Editar');
     this.op.hide();
   }
 
-  remover(id: number, event: any) {
+  remove(id: number, event: any) {
     this.id = id;
     this.op.hide();
 
@@ -77,7 +78,7 @@ export class TaskCard {
     this.openModalConfirmation.set(true);
   }
 
-  removerTask() {
+  deleteTask() {
     this.taskService.deleteTask(this.id).subscribe({
       next: (data) => {
         this.messageService.add({
@@ -96,8 +97,12 @@ export class TaskCard {
 
   actionReceived(event: string) {
     if (event == 'sucess') {
-      this.removerTask();
+      this.deleteTask();
     }
     this.openModalConfirmation.set(false);
+  }
+
+  moveToDone(id: number) {
+    this.taskToDone.emit(id);
   }
 }
