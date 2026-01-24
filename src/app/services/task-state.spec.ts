@@ -115,4 +115,17 @@ describe('TaskStateService (Signals)', () => {
   it('deve contar apenas tasks urgentes não concluídas', () => {
     expect(service.urgentCount()).toBe(1);
   });
+
+
+  it('deve contar apenas tasks a-fazer', () => {
+    expect(service.todo().length).toBe(1);
+  });
+
+  it('deve contar apenas tasks em-andamento', () => {
+    expect(service.inProgress().length).toBe(1);
+  });
+
+  it('deve contar apenas tasks done', () => {
+    expect(service.done().length).toBe(1);
+  });
 });
