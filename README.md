@@ -1,6 +1,19 @@
 # ProjectKanban
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
+Este projeto é uma aplicação de quadro Kanban desenvolvida em Angular, utilizando uma API mockada com **json-server**.
+
+## Tecnologias
+- Angular 19
+- PrimeNG
+- json-server
+- Node.js
+
+
+## Instalação do Projeto
+```bash
+git clone https://github.com/machadogcarla/projeto-kanban.git
+```
+
 
 ## Development server
 
@@ -11,6 +24,23 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Rodando a API Mock (json-server)
+
+Este projeto utiliza o **json-server** para simular uma API REST.
+
+### Pré-requisitos
+- Node.js instalado
+
+### Passos para rodar
+
+```bash
+npx json-server db.json
+```
+
+Exemplos de rota:
+
+http://localhost:3000/tasks
 
 ## Code scaffolding
 
