@@ -1,10 +1,8 @@
 import { Component, signal, inject, computed } from '@angular/core';
-import { Task } from '../../interface/task';
+import { MessageEdit, Task } from '../../interface/task';
 import { TaskService } from '../../services/task-service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
-import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ColumnKanbanComponent } from '../column-kanban/column-kanban';
 import { ButtonModule } from 'primeng/button';
 import { FiltersComponent } from '../filters/filters';
@@ -20,7 +18,6 @@ import { LogService } from '../../services/log-service';
   imports: [
     CommonModule,
     ProgressSpinnerModule,
-    DragDropModule,
     ButtonModule,
     ColumnKanbanComponent,
     FiltersComponent,
@@ -68,30 +65,6 @@ export class ListTasksComponent {
     });
   }
 
-  onTaskRemoved(id: number) {
-    this.taskState.tasks.set(this.taskState.tasks().filter((t) => t.id !== id));
-  }
-
-  drop(event: CdkDragDrop<Task[]>) {
-    if (event.previousContainer !== event.container) {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-
-      const previousStatus = event.container.data[event.currentIndex].status;
-      const task = event.container.data[event.currentIndex];
-      task.status = event.container.id;
-
-      this.editTask(
-        task,
-        `Task [ID: ${task.id}] movida de ${this.getLabelStatus(previousStatus)} para ${this.getLabelStatus(task.status)} com sucesso.`,
-      );
-    }
-  }
-
   private editTask(task: Task, messageToast: string) {
     this.taskService.editTask(<number>task?.id, task).subscribe({
       next: (data) => {
@@ -104,11 +77,8 @@ export class ListTasksComponent {
     });
   }
 
-  public onTaskToDone(task: Task) {
-    this.taskState.tasks.set(
-      this.taskState.tasks().map((t) => (t.id === task?.id ? { ...t, status: 'concluido' } : t)),
-    );
-    this.editTask(task, `Task ${task?.id} movida para concluído.`);
+  public onTaskMoviment(data: MessageEdit) {
+    this.editTask(data?.task, data?.message);
   }
 
   public openDrawerTask(title?: string) {
@@ -125,21 +95,5 @@ export class ListTasksComponent {
   public onTaskToEdit(task: Task) {
     this.taskSelecionada = task;
     this.openDrawerTask('Editar task');
-  }
-
-  getLabelStatus(status: string) : string{
-    switch (status) {
-      case 'a-fazer':
-        return 'A fazer';
-        break;
-      case 'em-andamento':
-        return 'Em andamento';
-        break;
-      case 'concluido':
-        return 'Concluído';
-        break;
-    }
-
-    return '';
   }
 }

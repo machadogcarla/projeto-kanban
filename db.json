@@ -3,8 +3,8 @@
     {
       "id": 2,
       "titulo": "Configurar Angular",
-      "descricao": "Criar projeto e instalar dependências",
-      "prazo": "2026-01-26",
+      "descricao": "Criar projeto e instalar dependências ed",
+      "prazo": "2026-01-28",
       "prioridade": "alta",
       "tags": [
         "frontend",
@@ -32,7 +32,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 5,
@@ -43,18 +43,18 @@
       "tags": [
         "frontend"
       ],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 6,
       "titulo": "Listagem de tarefas",
-      "descricao": "Criar tela de listagem das tarefas no Kanban",
+      "descricao": "Criar tela de listagem das tarefas no Kanban ed",
       "prazo": "2026-01-30",
       "prioridade": "media",
       "tags": [
         "frontend"
       ],
-      "status": "a-fazer"
+      "status": "concluido"
     },
     {
       "id": 7,
@@ -75,7 +75,7 @@
         "frontend",
         "ux"
       ],
-      "status": "a-fazer"
+      "status": "concluido"
     },
     {
       "id": 9,
@@ -85,17 +85,6 @@
       "prioridade": "alta",
       "tags": [
         "ux"
-      ],
-      "status": "em-andamento"
-    },
-    {
-      "id": 10,
-      "titulo": "Persistir no backend",
-      "descricao": "Salvar alterações no json-server",
-      "prazo": "2026-02-04",
-      "prioridade": "urgente",
-      "tags": [
-        "backend"
       ],
       "status": "a-fazer"
     },
@@ -115,7 +104,7 @@
       "prazo": "2026-02-06",
       "prioridade": "media",
       "tags": [],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 13,
@@ -149,7 +138,7 @@
       "tags": [
         "mobile"
       ],
-      "status": "em-andamento"
+      "status": "a-fazer"
     },
     {
       "id": 16,
@@ -181,7 +170,7 @@
       "tags": [
         "frontend"
       ],
-      "status": "a-fazer"
+      "status": "concluido"
     },
     {
       "id": 19,
@@ -201,7 +190,7 @@
       "prazo": "2026-01-24",
       "prioridade": "alta",
       "tags": [],
-      "status": "concluido"
+      "status": "em-andamento"
     },
     {
       "id": 21,
@@ -210,7 +199,18 @@
       "prazo": "2026-01-29",
       "prioridade": "media",
       "tags": [],
-      "status": "concluido"
+      "status": "em-andamento"
+    },
+    {
+      "id": 22,
+      "titulo": "Cadastro de Lojas",
+      "descricao": "",
+      "prazo": "2026-01-30",
+      "prioridade": "baixa",
+      "tags": [
+        "lojas"
+      ],
+      "status": "em-andamento"
     }
   ]
 }

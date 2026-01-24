@@ -1,5 +1,5 @@
 import { Component, inject, Input, output, signal, ViewChild } from '@angular/core';
-import { ModalConfirmationInterface, Task } from '../../interface/task';
+import { MessageEdit, ModalConfirmationInterface, Task } from '../../interface/task';
 import { DatePipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { SharedTaskModule } from '../../shared.module';
@@ -10,6 +10,7 @@ import { TaskService } from '../../services/task-service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TagModule } from 'primeng/tag';
 import { LogService } from '../../services/log-service';
+import { TaskStateService } from '../../services/task-state';
 
 @Component({
   selector: 'app-task-card',
@@ -32,10 +33,11 @@ export class TaskCardComponent {
   public openModalConfirmation = signal(false);
   public conteudoModal!: ModalConfirmationInterface;
 
+  private taskState = inject(TaskStateService);
+
   private id!: number;
-  public taskRemoved = output<number>();
-  public taskToDone = output<Task>();
   public taskEdit = output<Task>();
+  public taskMoviment = output<MessageEdit>();
 
   constructor(
     private taskService: TaskService,
@@ -84,8 +86,7 @@ export class TaskCardComponent {
     this.taskService.deleteTask(this.id).subscribe({
       next: (data) => {
         this.logService.log(`Task [ID: ${this.id}; removida com sucesso.`, 'success');
-
-        this.taskRemoved.emit(this.id);
+        this.taskState.tasks.set(this.taskState.tasks().filter((t) => t.id !== this.id));
       },
       error: (err) => {
         this.logService.log(`Erro ao deletar task. [ID: ${this.id};`, 'error');
@@ -100,7 +101,8 @@ export class TaskCardComponent {
     this.openModalConfirmation.set(false);
   }
 
-  moveToDone(task: Task) {
-    this.taskToDone.emit(task);
+  moveToDone(task: any) {
+    task.status = 'concluido';
+    this.taskMoviment.emit({ task: task, message: `Task ${task?.id} movida para Concluído.` });
   }
 }

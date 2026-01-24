@@ -26,7 +26,6 @@ import { InputIconModule } from 'primeng/inputicon';
 })
 export class FiltersComponent implements OnInit {
   priorityList: Prioridade[] = [
-    { nome: '   ', id_externo: '' },
     { nome: 'Urgente', id_externo: 'urgente' },
     { nome: 'Alta', id_externo: 'alta' },
     { nome: 'Média', id_externo: 'media' },

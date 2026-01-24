@@ -7,7 +7,7 @@
 
 p-card {
   cursor: move;
-  height: 249px;
+  /* height: 249px; */
   display: flex;
   flex-direction: column;
 }

@@ -12,9 +12,8 @@
     <app-task-card
       class="card"
       [lista]="lista"
-      (taskRemoved)="taskRemoved.emit($event)"
-      (taskToDone)="taskToDone.emit($event)"
       (taskEdit)="taskEdit.emit($event)"
+      (taskMoviment)="taskMoviment.emit($event)"
     />
   </div>
 </div>

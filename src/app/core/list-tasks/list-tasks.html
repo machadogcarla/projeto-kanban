@@ -21,9 +21,7 @@
           status="a-fazer"
           [lista]="todo()"
           [statusList]="['em-andamento', 'concluido']"
-          (dropped)="drop($event)"
-          (taskRemoved)="onTaskRemoved($event)"
-          (taskToDone)="onTaskToDone($event)"
+          (taskMoviment)="onTaskMoviment($event)"
           (taskEdit)="onTaskToEdit($event)"
         />
 
@@ -32,9 +30,7 @@
           status="em-andamento"
           [lista]="inProgress()"
           [statusList]="['a-fazer', 'concluido']"
-          (dropped)="drop($event)"
-          (taskRemoved)="onTaskRemoved($event)"
-          (taskToDone)="onTaskToDone($event)"
+          (taskMoviment)="onTaskMoviment($event)"
           (taskEdit)="onTaskToEdit($event)"
         />
 
@@ -43,9 +39,7 @@
           status="concluido"
           [lista]="done()"
           [statusList]="['a-fazer', 'em-andamento']"
-          (dropped)="drop($event)"
-          (taskRemoved)="onTaskRemoved($event)"
-          (taskToDone)="onTaskToDone($event)"
+          (taskMoviment)="onTaskMoviment($event)"
           (taskEdit)="onTaskToEdit($event)"
         />
       </div>

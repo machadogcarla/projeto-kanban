@@ -22,3 +22,8 @@ export interface Prioridade {
   id_externo: string;
   nome: string;
 }
+
+export interface MessageEdit {
+  task: Task;
+  message: string;
+}
