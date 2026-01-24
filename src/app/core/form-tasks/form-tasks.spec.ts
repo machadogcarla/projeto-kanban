@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormTasksComponent } from './form-tasks';
+import { MessageService } from 'primeng/api';
 
 describe('FormTasksComponent', () => {
   let component: FormTasksComponent;
@@ -8,7 +9,8 @@ describe('FormTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormTasksComponent]
+      imports: [FormTasksComponent],
+      providers: [MessageService]
     })
     .compileComponents();
 

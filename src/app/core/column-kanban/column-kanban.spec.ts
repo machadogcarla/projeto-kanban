@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ColumnKanbanComponent } from './column-kanban';
+import { MessageService } from 'primeng/api';
 
 describe('ColumnKanbanComponent', () => {
   let component: ColumnKanbanComponent;
@@ -8,7 +9,8 @@ describe('ColumnKanbanComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColumnKanbanComponent]
+      imports: [ColumnKanbanComponent],
+      providers: [MessageService]
     })
     .compileComponents();
 

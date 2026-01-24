@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListTasksComponent } from './list-tasks';
+import { MessageService } from 'primeng/api';
 
 describe('ListTasks', () => {
   let component: ListTasksComponent;
@@ -8,7 +9,8 @@ describe('ListTasks', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListTasksComponent]
+      imports: [ListTasksComponent],
+      providers: [MessageService]
     })
     .compileComponents();
 

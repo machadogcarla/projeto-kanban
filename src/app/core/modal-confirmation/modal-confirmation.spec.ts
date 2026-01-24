@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ModalConfirmationComponent } from './modal-confirmation';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 describe('ModalConfirmationComponent', () => {
   let component: ModalConfirmationComponent;
@@ -8,7 +9,8 @@ describe('ModalConfirmationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalConfirmationComponent]
+      imports: [ModalConfirmationComponent],
+      providers: [MessageService, ConfirmationService]
     })
     .compileComponents();
 
