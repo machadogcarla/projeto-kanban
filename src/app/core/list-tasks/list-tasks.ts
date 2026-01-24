@@ -37,11 +37,11 @@ export class ListTasksComponent {
 
   public tasks = this.taskState.filteredTasks;
 
-  public todo = computed(() => this.tasks().filter((t) => t.status === 'a-fazer'));
+  public todo = this.taskState.todo;
 
-  public inProgress = computed(() => this.tasks().filter((t) => t.status === 'em-andamento'));
+  public inProgress = this.taskState.inProgress;
 
-  public done = computed(() => this.tasks().filter((t) => t.status === 'concluido'));
+  public done = this.taskState.done;
 
   public openDrawer: boolean = false;
   public titleDrawer: string = '';

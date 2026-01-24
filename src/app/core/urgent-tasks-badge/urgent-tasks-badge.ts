@@ -11,10 +11,5 @@ import { OverlayBadgeModule } from 'primeng/overlaybadge';
 })
 export class UrgentTasksBadgeComponent {
   public taskState = inject(TaskStateService);
-
-  public urgentCount = computed(() => {
-    return this.taskState
-      .tasks()
-      .filter((t) => t.prioridade === 'urgente' && t.status !== 'concluido').length;
-  });
+  public urgentCount = this.taskState.urgentCount;
 }

@@ -13,7 +13,16 @@ export class TaskStateService {
     intervalo_datas: null as { start: string | null; end: string | null } | null,
   });
 
-  // estado derivado (filtrado)
+  urgentCount = computed(() => {
+    return this.tasks().filter((t) => t.prioridade === 'urgente' && t.status !== 'concluido')
+      .length;
+  });
+  
+  todo = computed(() => this.tasks().filter((t) => t.status === 'a-fazer'));
+  inProgress = computed(() => this.tasks().filter((t) => t.status === 'em-andamento'));
+  done = computed(() => this.tasks().filter((t) => t.status === 'concluido'));
+
+  // (filtrado)
   filteredTasks = computed(() => {
     const tasks = this.tasks();
     const filters = this.filters();
