@@ -8,7 +8,6 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { palavraProibidaValidator } from '../../validators/palavra-proibida.validator';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -19,10 +18,11 @@ import { Prioridade, Task } from '../../interface/task';
 import { ChipModule } from 'primeng/chip';
 import { Button } from 'primeng/button';
 import { Tag } from 'primeng/tag';
-import { maxArrayLength } from '../../validators/max-array-length/max-array-length';
 import { TaskService } from '../../services/task-service';
 import { TaskStateService } from '../../services/task-state';
 import { LogService } from '../../services/log-service';
+import { palavraProibidaValidator } from '../../validators/palavra-proibida.validator';
+import { maxArrayLength } from '../../validators/max-array-length.validator';
 
 @Component({
   selector: 'app-form-tasks',
