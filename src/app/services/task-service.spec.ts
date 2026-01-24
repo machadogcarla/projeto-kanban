@@ -68,4 +68,43 @@ describe('TaskService', () => {
 
     req.flush(mockListTasks[0]);
   });
+
+  it('deve editar uma task por ID - PUT /tasks/id', () => {
+    const id = mockListTasks[0]?.id;
+    const taskEditada = {
+      ...mockListTasks[0],
+      titulo: 'Criar layout do sistema editado',
+    };
+
+    service.editTask(id, taskEditada).subscribe({
+      next: (task) => {
+        expect(task.id).toBe(1);
+        expect(task.titulo).toBe('Criar layout do sistema editado');
+      },
+    });
+
+    const req = httpMock.expectOne(`${apiUrl}/${id}`);
+    expect(req.request.method).toBe('PUT');
+
+    req.flush(taskEditada);
+  });
+
+  it('deve remover uma task por ID - DELETE /tasks/id', () => {
+    const id = 1;
+
+    service.deleteTask(id).subscribe({
+      next: (response) => {
+        expect(response).toBeNull();
+      }
+    });
+
+    const req = httpMock.expectOne(`${apiUrl}/${id}`);
+
+    expect(req.request.method).toBe('DELETE');
+
+    req.flush(null, {
+      status: 200,
+      statusText: 'No Content',
+    });
+  });
 });
