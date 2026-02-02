@@ -40,7 +40,7 @@
         dateFormat="dd/mm/yy"
         showIcon="true"
         inputId="over_data"
-        [minDate]="dataAtual"
+        [minDate]="taskSelecionada? null : dataAtual"
       ></p-datepicker>
       <label for="over_data">Data de Entrega (Prazo)</label>
     </p-floatlabel>

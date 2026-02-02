@@ -46,6 +46,7 @@ import { maxArrayLength } from '../../validators/max-array-length.validator';
 export class FormTasksComponent implements OnInit, AfterViewInit {
   formulario!: FormGroup;
   dataAtual = new Date();
+  
   values: string[] | undefined;
   private taskService = inject(TaskService);
   private taskState = inject(TaskStateService);
@@ -97,11 +98,13 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
       const statusObj = this.statusList.find((s) => s.id_externo === this.taskSelecionada?.status);
 
       this.formulario.patchValue({
-        ...this.taskSelecionada,
-        prazo: this.taskSelecionada.prazo ? new Date(this.taskSelecionada.prazo) : null,
-        prioridade: prioridadeObj,
-        status: statusObj,
-      });
+          ...this.taskSelecionada,
+          prazo: this.taskSelecionada.prazo
+            ? this.parseDateLocal(this.taskSelecionada.prazo)
+            : null,
+          prioridade: prioridadeObj,
+          status: statusObj,
+        });      
     }
   }
 
@@ -119,6 +122,11 @@ export class FormTasksComponent implements OnInit, AfterViewInit {
   isInvalid(controlName: string) {
     const control = this.formulario.get(controlName);
     return control?.invalid && control.dirty;
+  }
+
+  parseDateLocal(dateStr: string): Date {
+    const [year, month, day] = dateStr.split('-').map(Number);
+    return new Date(year, month - 1, day);
   }
 
   submit() {
